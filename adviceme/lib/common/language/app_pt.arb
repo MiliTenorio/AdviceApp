@@ -1,0 +1,11 @@
+{
+    "@@locale" : "pt",
+    "appTitle" : "Conselhos pra Mim!",
+    "adviceText" : "Quero um Conselho",
+    "favoriteAdviceButton" : "Favorito",
+    "newAdviceButton" : "Novo",
+    "listFavoriteAdvices" : "Favoritos",
+    "noFavorites" : "Ainda sem favoritos",
+    "removeFromFavorites" : "Remova dos Favoritos",
+    "share" : "Compartilhe"
+}
