@@ -69,4 +69,10 @@ abstract class _AdviceStore with Store {
     }
     saveFavoritesUseCase(favorites.toList());
   }
+
+  @action
+  Future<void> removeFavorite(String adviceToRemove) async {
+    favorites.remove(adviceToRemove);
+    await saveFavoritesUseCase(favorites.toList());
+  }
 }

@@ -31,7 +31,12 @@ class AdviceList extends StatelessWidget {
                   elevation: 2,
                   margin: const EdgeInsets.symmetric(vertical: 4),
                   child: ListTile(
-                    leading: const Icon(Icons.favorite, color: Colors.red),
+                    leading: IconButton(
+                      icon: Icon(Icons.favorite, color: Colors.red),
+                      onPressed: () {
+                        store.removeFavorite(advice);
+                      },
+                    ),
                     title: Text(advice),
                   ),
                 );
