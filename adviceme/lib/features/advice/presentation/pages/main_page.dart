@@ -19,6 +19,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     store = Modular.get<AdviceStore>();
+    store.loadFavorites();
     store.fetchAdvice();
   }
 
@@ -29,8 +30,8 @@ class _MainPageState extends State<MainPage> {
       body: Column(
         children: [
           AdviceWidget(store: store),
-          AdviceOptionsWidget(onRefresh: store.fetchAdvice),
-          AdviceList(),
+          AdviceOptionsWidget(store: store),
+          AdviceList(store: store),
         ],
       ),
     );

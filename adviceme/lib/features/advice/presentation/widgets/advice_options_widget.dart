@@ -1,9 +1,11 @@
+import 'package:adviceme/features/advice/presentation/stores/advice_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class AdviceOptionsWidget extends StatelessWidget {
-  final VoidCallback onRefresh;
+  final AdviceStore store;
 
-  const AdviceOptionsWidget({super.key, required this.onRefresh});
+  const AdviceOptionsWidget({super.key, required this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -13,22 +15,19 @@ class AdviceOptionsWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextButton.icon(
-              onPressed: () {
-                //TODO: store.addToFavorites()
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Favorite not implemented yet!"),
+            Observer(
+              builder:
+                  (_) => IconButton(
+                    icon: Icon(
+                      store.isFavorite ? Icons.favorite : Icons.favorite_border,
+                      color: store.isFavorite ? Colors.red : null,
+                    ),
+                    onPressed: store.toggleFavorite,
                   ),
-                );
-              },
-              icon: const Icon(Icons.favorite_border),
-              label: const Text("Favorite"),
             ),
-            TextButton.icon(
-              onPressed: onRefresh,
-              icon: const Icon(Icons.replay),
-              label: const Text("New Advice"),
+            IconButton(
+              icon: const Icon(Icons.refresh),
+              onPressed: store.fetchAdvice,
             ),
           ],
         ),
