@@ -19,8 +19,8 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     store = Modular.get<AdviceStore>();
-    store.loadFavorites();
     store.fetchAdvice();
+    store.loadFavorites();
   }
 
   @override

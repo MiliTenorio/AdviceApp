@@ -24,7 +24,10 @@ abstract class _AdviceStore with Store {
   String adviceText = '';
 
   @observable
-  bool isLoading = false;
+  bool isLoadingAdvice = false;
+
+  @observable
+  bool isLoadingFavorites = false;
 
   @observable
   ObservableList<String> favorites = ObservableList<String>();
@@ -34,14 +37,14 @@ abstract class _AdviceStore with Store {
 
   @action
   Future<void> fetchAdvice() async {
-    isLoading = true;
+    isLoadingAdvice = true;
     try {
       Advice advice = await getAdviceUseCase();
       adviceText = advice.text;
     } catch (_) {
       adviceText = 'Fail!';
     } finally {
-      isLoading = false;
+      isLoadingAdvice = false;
     }
   }
 
@@ -56,8 +59,10 @@ abstract class _AdviceStore with Store {
 
   @action
   Future<void> loadFavorites() async {
+    isLoadingFavorites = true;
     final storedFavorites = await getFavoritesUseCase();
     favorites = ObservableList.of(storedFavorites);
+    isLoadingFavorites = false;
   }
 
   @action

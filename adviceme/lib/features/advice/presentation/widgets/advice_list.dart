@@ -13,6 +13,10 @@ class AdviceList extends StatelessWidget {
     return Expanded(
       child: Observer(
         builder: (_) {
+          if (store.isLoadingFavorites) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
           if (store.favorites.isEmpty) {
             return const Padding(
               padding: EdgeInsets.all(16.0),
@@ -22,6 +26,7 @@ class AdviceList extends StatelessWidget {
 
           return Expanded(
             child: ListView.builder(
+              shrinkWrap: true,
               padding: const EdgeInsets.all(8),
               itemCount: store.favorites.length,
               itemBuilder: (_, index) {
@@ -33,9 +38,7 @@ class AdviceList extends StatelessWidget {
                   child: ListTile(
                     leading: IconButton(
                       icon: Icon(Icons.favorite, color: Colors.red),
-                      onPressed: () {
-                        store.removeFavorite(advice);
-                      },
+                      onPressed: () => store.removeFavorite(advice),
                     ),
                     title: Text(advice),
                   ),

@@ -14,7 +14,7 @@ class AdviceWidget extends StatelessWidget {
     return Center(
       child: Observer(
         builder: (_) {
-          if (store.isLoading) {
+          if (store.isLoadingAdvice) {
             return const CircularProgressIndicator();
           }
           return Padding(
