@@ -9,30 +9,30 @@ class AdviceOptionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Divider(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Observer(
+    return Container(
+      decoration: BoxDecoration(color: Colors.amberAccent.shade100),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Observer(
               builder:
                   (_) => IconButton(
                     icon: Icon(
                       store.isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: store.isFavorite ? Colors.red : null,
+                      color: store.isFavorite ? Colors.redAccent : null,
                     ),
                     onPressed: store.toggleFavorite,
                   ),
             ),
-            IconButton(
-              icon: const Icon(Icons.refresh),
-              onPressed: store.fetchAdvice,
-            ),
-          ],
-        ),
-        const Divider(),
-      ],
+          ),
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: store.fetchAdvice,
+          ),
+        ],
+      ),
     );
   }
 }
