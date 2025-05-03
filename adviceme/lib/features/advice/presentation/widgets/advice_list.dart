@@ -1,3 +1,4 @@
+import 'package:adviceme/common/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -13,7 +14,7 @@ class AdviceList extends StatelessWidget {
     return Expanded(
       child: Container(
         width: double.infinity,
-        decoration: BoxDecoration(color: Colors.pinkAccent.shade100),
+        decoration: BoxDecoration(color: AppColors.yellowBackground),
         child: Observer(
           builder: (_) {
             if (store.isLoadingFavorites) {
@@ -29,14 +30,14 @@ class AdviceList extends StatelessWidget {
                     padding: EdgeInsets.all(16.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.amberAccent.shade100,
+                        color: AppColors.orangeBackground,
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(12),
                         child: Text(
                           "You don't have favorite advice yet.",
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: AppColors.whiteText),
                         ),
                       ),
                     ),
@@ -53,19 +54,17 @@ class AdviceList extends StatelessWidget {
                 itemBuilder: (_, index) {
                   final advice = store.favorites[index];
                   return Card(
-                    color: const Color.fromARGB(255, 86, 218, 225),
+                    color: AppColors.blueCard,
                     elevation: 2,
                     margin: const EdgeInsets.symmetric(vertical: 4),
                     child: ListTile(
                       leading: IconButton(
-                        icon: Icon(Icons.favorite, color: Colors.redAccent),
+                        icon: Icon(Icons.favorite, color: AppColors.redHeart),
                         onPressed: () => store.removeFavorite(advice),
                       ),
                       title: Text(
                         advice,
-                        style: TextStyle(
-                          color: const Color.fromARGB(255, 238, 249, 250),
-                        ),
+                        style: TextStyle(color: AppColors.whiteText),
                       ),
                     ),
                   );
