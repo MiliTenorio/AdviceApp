@@ -7,6 +7,7 @@ import 'package:adviceme/features/advice/domain/usecases/get_favorites_usecase.d
 import 'package:adviceme/features/advice/domain/usecases/save_favorites_usecase.dart';
 import 'package:adviceme/features/advice/presentation/pages/main_page.dart';
 import 'package:adviceme/features/advice/presentation/stores/advice_store.dart';
+import 'package:adviceme/features/splash/presentation/pages/splash_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AdviceModule extends Module {
@@ -38,6 +39,7 @@ class AdviceModule extends Module {
 
   @override
   void routes(RouteManager r) {
-    r.child(Modular.initialRoute, child: (_) => const MainPage());
+    r.child(Modular.initialRoute, child: (_) => const SplashScreen());
+    r.child("/home", child: (_) => const MainPage());
   }
 }
