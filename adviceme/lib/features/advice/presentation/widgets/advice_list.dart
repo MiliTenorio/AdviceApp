@@ -1,4 +1,5 @@
 import 'package:adviceme/common/theme/app_colors.dart';
+import 'package:adviceme/features/advice/presentation/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -46,30 +47,30 @@ class AdviceList extends StatelessWidget {
               );
             }
 
-            return Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(8),
-                itemCount: store.favorites.length,
-                itemBuilder: (_, index) {
-                  final advice = store.favorites[index];
-                  return Card(
-                    color: AppColors.blueCard,
-                    elevation: 2,
-                    margin: const EdgeInsets.symmetric(vertical: 4),
-                    child: ListTile(
-                      leading: IconButton(
-                        icon: Icon(Icons.favorite, color: AppColors.redHeart),
-                        onPressed: () => store.removeFavorite(advice),
-                      ),
-                      title: Text(
-                        advice,
-                        style: TextStyle(color: AppColors.whiteText),
-                      ),
+            return ListView.builder(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(8),
+              itemCount: store.favorites.length,
+              itemBuilder: (_, index) {
+                final advice = store.favorites[index];
+                return Card(
+                  color: AppColors.blueCard,
+                  elevation: 2,
+                  margin: const EdgeInsets.symmetric(vertical: 4),
+                  child: ListTile(
+                    trailing: FavoriteButton(
+                      isFavorite: true,
+                      onPressed: () => store.removeFavorite(advice),
+                      activeColor: AppColors.redHeart,
+                      inactiveColor: AppColors.purpleCard,
                     ),
-                  );
-                },
-              ),
+                    title: Text(
+                      advice,
+                      style: TextStyle(color: AppColors.whiteText),
+                    ),
+                  ),
+                );
+              },
             );
           },
         ),

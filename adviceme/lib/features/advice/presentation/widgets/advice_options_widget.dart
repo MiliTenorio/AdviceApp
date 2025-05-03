@@ -1,5 +1,6 @@
 import 'package:adviceme/common/theme/app_colors.dart';
 import 'package:adviceme/features/advice/presentation/stores/advice_store.dart';
+import 'package:adviceme/features/advice/presentation/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -18,18 +19,11 @@ class AdviceOptionsWidget extends StatelessWidget {
         children: [
           Observer(
             builder:
-                (_) => IconButton(
-                  icon: Icon(
-                    store.isFavorite ? Icons.favorite : Icons.favorite_border,
-                    color:
-                        store.isFavorite
-                            ? AppColors.redHeart
-                            : AppColors.purpleCard,
-                    size: 28,
-                  ),
+                (_) => FavoriteButton(
+                  isFavorite: store.isFavorite,
                   onPressed: store.toggleFavorite,
-                  tooltip:
-                      store.isFavorite ? 'Remove favorite' : 'Add favorite',
+                  activeColor: AppColors.redHeart,
+                  inactiveColor: AppColors.purpleCard,
                 ),
           ),
           IconButton(
